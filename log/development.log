@@ -1,0 +1,246 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (16.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (25.7ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (2.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130313014737)
+  [1m[35m (7.1ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (20.6ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)[0m
+  [1m[35m (22.6ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36m (3.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130313014737')[0m
+Migrating to AddNameToUsers (20130313014741)
+  [1m[35m (7.7ms)[0m  ALTER TABLE `users` ADD `name` varchar(255)
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130313014741')[0m
+Migrating to AddConfirmableToUsers (20130313014755)
+  [1m[35m (58.5ms)[0m  ALTER TABLE `users` ADD `confirmation_token` varchar(255)
+  [1m[36m (9.0ms)[0m  [1mALTER TABLE `users` ADD `confirmed_at` datetime[0m
+  [1m[35m (11.5ms)[0m  ALTER TABLE `users` ADD `confirmation_sent_at` datetime
+  [1m[36m (9.9ms)[0m  [1mALTER TABLE `users` ADD `unconfirmed_email` varchar(255)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20130313014755')
+Migrating to RolifyCreateRoles (20130313014805)
+  [1m[36m (3.6ms)[0m  [1mCREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `resource_id` int(11), `resource_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (4.2ms)[0m  CREATE TABLE `users_roles` (`user_id` int(11), `role_id` int(11)) ENGINE=InnoDB
+  [1m[36m (17.2ms)[0m  [1mCREATE INDEX `index_roles_on_name` ON `roles` (`name`)[0m
+  [1m[35m (15.7ms)[0m  CREATE INDEX `index_roles_on_name_and_resource_type_and_resource_id` ON `roles` (`name`, `resource_type`, `resource_id`)
+  [1m[36m (17.8ms)[0m  [1mCREATE INDEX `index_users_roles_on_user_id_and_role_id` ON `users_roles` (`user_id`, `role_id`)[0m
+  [1m[35m (2.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20130313014805')
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.9ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130313014737)
+Migrating to AddNameToUsers (20130313014741)
+Migrating to AddConfirmableToUsers (20130313014755)
+Migrating to RolifyCreateRoles (20130313014805)
+Migrating to DeviseInvitableAddToUsers (20130313015026)
+  [1m[35m (14.8ms)[0m  ALTER TABLE `users` ADD `invitation_token` varchar(60)
+  [1m[36m (8.5ms)[0m  [1mALTER TABLE `users` ADD `invitation_sent_at` datetime[0m
+  [1m[35m (7.4ms)[0m  ALTER TABLE `users` ADD `invitation_accepted_at` datetime
+  [1m[36m (7.8ms)[0m  [1mALTER TABLE `users` ADD `invitation_limit` int(11)[0m
+  [1m[35m (9.7ms)[0m  ALTER TABLE `users` ADD `invited_by_id` int(11)
+  [1m[36m (9.3ms)[0m  [1mALTER TABLE `users` ADD `invited_by_type` varchar(255)[0m
+  [1m[35m (17.4ms)[0m  CREATE INDEX `index_users_on_invitation_token` ON `users` (`invitation_token`)
+  [1m[36m (15.4ms)[0m  [1mCREATE INDEX `index_users_on_invited_by_id` ON `users` (`invited_by_id`)[0m
+  [1m[35m (8.5ms)[0m  ALTER TABLE `users` CHANGE `encrypted_password` `encrypted_password` varchar(255) DEFAULT ''
+  [1m[36m (3.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130313015026')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+  [1m[36m (1.8ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.8ms)[0m  DROP DATABASE IF EXISTS `payadmin_test`
+  [1m[36m (0.3ms)[0m  [1mCREATE DATABASE `payadmin_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (4.5ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `resource_id` int(11), `resource_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (20.3ms)[0m  [1mCREATE INDEX `index_roles_on_name_and_resource_type_and_resource_id` ON `roles` (`name`, `resource_type`, `resource_id`)[0m
+  [1m[35m (22.5ms)[0m  CREATE INDEX `index_roles_on_name` ON `roles` (`name`)
+  [1m[36m (8.5ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '', `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `name` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `invitation_token` varchar(60), `invitation_sent_at` datetime, `invitation_accepted_at` datetime, `invitation_limit` int(11), `invited_by_id` int(11), `invited_by_type` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (17.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)
+  [1m[36m (16.7ms)[0m  [1mCREATE INDEX `index_users_on_invitation_token` ON `users` (`invitation_token`)[0m
+  [1m[35m (17.1ms)[0m  CREATE INDEX `index_users_on_invited_by_id` ON `users` (`invited_by_id`)
+  [1m[36m (18.0ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)[0m
+  [1m[35m (3.2ms)[0m  CREATE TABLE `users_roles` (`user_id` int(11), `role_id` int(11)) ENGINE=InnoDB
+  [1m[36m (16.6ms)[0m  [1mCREATE INDEX `index_users_roles_on_user_id_and_role_id` ON `users_roles` (`user_id`, `role_id`)[0m
+  [1m[35m (5.2ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (17.2ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130313015026')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130313014741')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130313014805')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20130313014755')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20130313014737')[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.9ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35mRole Load (0.7ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`name` = 'admin' LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_id`, `resource_type`, `updated_at`) VALUES ('2013-03-13 01:50:41', 'admin', NULL, NULL, '2013-03-13 01:50:41')
+  [1m[36m (2.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mRole Load (1.1ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`name` = 'user' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_id`, `resource_type`, `updated_at`) VALUES ('2013-03-13 01:50:41', 'user', NULL, NULL, '2013-03-13 01:50:41')
+  [1m[36m (1.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`name` = 'VIP' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_id`, `resource_type`, `updated_at`) VALUES ('2013-03-13 01:50:41', 'VIP', NULL, NULL, '2013-03-13 01:50:41')
+  [1m[36m (3.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`email` = 'user@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@example.com' LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`confirmation_token` = '32muEzdsr7t9Xo2y1w7f' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `users` (`confirmation_sent_at`, `confirmation_token`, `confirmed_at`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `invitation_accepted_at`, `invitation_limit`, `invitation_sent_at`, `invitation_token`, `invited_by_id`, `invited_by_type`, `last_sign_in_at`, `last_sign_in_ip`, `name`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `unconfirmed_email`, `updated_at`) VALUES ('2013-03-13 01:50:41', '32muEzdsr7t9Xo2y1w7f', NULL, '2013-03-13 01:50:41', NULL, NULL, 'user@example.com', '$2a$10$X/oWHlRF6UnbKeVIyZJAWegI0cHAl1LgWsw2rzeRYZZj8FxbpjtOy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'First User', NULL, NULL, NULL, 0, NULL, '2013-03-13 01:50:41')
+  Rendered /home/jam/.rvm/gems/ruby-1.9.3-p385@payadmin/gems/devise-2.2.3/app/views/devise/mailer/confirmation_instructions.html.erb (4.8ms)
+
+Sent mail to user@example.com (64ms)
+Date: Wed, 13 Mar 2013 09:50:42 +0800
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: user@example.com
+Message-ID: <513fdb7247e81_13a047a00042192e@ubuntu.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome user@example.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=32muEzdsr7t9Xo2y1w7f">Confirm my account</a></p>
+
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `users` SET `confirmation_token` = NULL, `confirmed_at` = '2013-03-13 01:50:42', `updated_at` = '2013-03-13 01:50:42' WHERE `users`.`id` = 1[0m
+  [1m[35m (1.7ms)[0m  COMMIT
+  [1m[36mRole Load (0.5ms)[0m  [1mSELECT `roles`.* FROM `roles` WHERE `roles`.`name` = 'admin' AND `roles`.`resource_type` IS NULL AND `roles`.`resource_id` IS NULL LIMIT 1[0m
+  [1m[35mRole Exists (0.5ms)[0m  SELECT 1 AS one FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 1 AND `roles`.`id` = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT `roles`.id FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (1, 1)[0m
+  [1m[35m (1.9ms)[0m  COMMIT
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-13 09:53:30 +0800
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT `users`.* FROM `users` [0m
+  Rendered home/index.html.haml within layouts/application (6.3ms)
+Compiled bootstrap_and_overrides.css  (3509ms)  (pid 5387)
+Compiled home.css  (2ms)  (pid 5387)
+Compiled application.css  (3733ms)  (pid 5387)
+Compiled jquery.js  (51ms)  (pid 5387)
+Compiled jquery_ujs.js  (0ms)  (pid 5387)
+Compiled bootstrap-transition.js  (0ms)  (pid 5387)
+Compiled bootstrap-affix.js  (0ms)  (pid 5387)
+Compiled bootstrap-alert.js  (0ms)  (pid 5387)
+Compiled bootstrap-button.js  (0ms)  (pid 5387)
+Compiled bootstrap-carousel.js  (0ms)  (pid 5387)
+Compiled bootstrap-collapse.js  (0ms)  (pid 5387)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 5387)
+Compiled bootstrap-modal.js  (0ms)  (pid 5387)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 5387)
+Compiled bootstrap-tab.js  (0ms)  (pid 5387)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 5387)
+Compiled bootstrap-popover.js  (0ms)  (pid 5387)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 5387)
+Compiled bootstrap.js  (361ms)  (pid 5387)
+Compiled home.js  (1657ms)  (pid 5387)
+Compiled application.js  (2258ms)  (pid 5387)
+  Rendered layouts/_navigation.html.haml (8.8ms)
+  Rendered layouts/_messages.html.haml (2.7ms)
+Completed 200 OK in 6543ms (Views: 6409.8ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /application.css - 304 Not Modified (71ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap_and_overrides.css - 200 OK (14ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /jquery.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-transition.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-affix.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-popover.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap.js - 304 Not Modified (40ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-alert.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-typeahead.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-button.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-carousel.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-collapse.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-dropdown.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-modal.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /home.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /application.js - 304 Not Modified (82ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-tab.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-13 09:53:38 +0800
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
